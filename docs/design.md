@@ -14,7 +14,7 @@ A reusable starter template for full-stack Next.js apps, extracted from the `exa
 | Database | PostgreSQL -- Neon serverless (prod), postgres-js (local) |
 | ORM | Drizzle ORM (schema push workflow) |
 | Deployment | Vercel |
-| Local dev DB | Docker Compose (Postgres 16) |
+| Local dev DB | Docker Compose (Postgres 17) |
 | Code quality | ESLint, Prettier, pre-commit hooks |
 
 ## Project Structure

@@ -1,0 +1,30 @@
+services:
+  postgres:
+    image: postgres:17
+    container_name: next-stack-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: next_stack
+      POSTGRES_PASSWORD: next_stack_dev
+      POSTGRES_DB: next_stack
+      POSTGRES_INITDB_ARGS: "-E UTF8 --locale=C"
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./docker/postgres/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U next_stack -d next_stack"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - next-stack-network
+
+volumes:
+  postgres_data:
+    driver: local
+
+networks:
+  next-stack-network:
+    driver: bridge

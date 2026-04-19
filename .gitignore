@@ -1,2 +1,2 @@
-.DS_Store
-example
+.vercel
+.env*.local

@@ -1,0 +1,32 @@
+# Docker ignore file
+# Exclude unnecessary files from Docker context
+
+node_modules
+.next
+.git
+.env
+.env.local
+.env*.local
+*.log
+.DS_Store
+dist
+build
+coverage
+.vscode
+.idea
+*.swp
+*.swo
+*~
+
+# Dependencies
+bun.lock
+package-lock.json
+yarn.lock
+
+# Build artifacts
+tsconfig.tsbuildinfo
+*.tsbuildinfo
+
+# Documentation (not needed in container)
+docs/
+*.md

@@ -1,0 +1,52 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-json
+        exclude: tsconfig\.json$
+
+  - repo: https://github.com/igorshubovych/markdownlint-cli
+    rev: v0.47.0
+    hooks:
+    - id: markdownlint
+      args:
+      - --fix
+      verbose: true
+      entry: bash -c 'markdownlint "$@" || true' --
+
+  - repo: https://github.com/antonbabenko/pre-commit-terraform
+    rev: v1.104.0
+    hooks:
+      - id: terraform_fmt
+        name: Terraform Format
+        description: Rewrites all Terraform configuration files to a canonical format
+      - id: terraform_validate
+        name: Terraform Validate
+        description: Validates all Terraform configuration files
+
+  - repo: https://github.com/scop/pre-commit-shfmt
+    rev: v3.12.0-2
+    hooks:
+      - id: shfmt
+        name: Shell Format
+        description: Format shell scripts with shfmt
+        args: [-w, -i, '2', -ci, -sr]
+
+  - repo: https://github.com/shellcheck-py/shellcheck-py
+    rev: v0.11.0.1
+    hooks:
+      - id: shellcheck
+        name: Shell Check
+        description: Lint shell scripts with shellcheck
+
+  - repo: local
+    hooks:
+      - id: prettier-typescript
+        name: Prettier TypeScript
+        entry: bash -c 'cd src && bun fmt'
+        language: system
+        files: ^src/.*\.ts$
+        pass_filenames: false
